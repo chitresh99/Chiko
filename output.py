@@ -1,35 +1,27 @@
-print("Simple Python Calculator")
-print("Supported operations: +, -, *, /")
+print("Simple Calculator")
+print("Type 'quit' to exit\n")
 
 while True:
-    try:
-        a = float(input("\nEnter first number: "))
-        op = input("Enter operation (+, -, *, /): ")
-        b = float(input("Enter second number: "))
-
-        if op == '+':
-            result = a + b
-        elif op == '-':
-            result = a - b
-        elif op == '*':
-            result = a * b
-        elif op == '/':
-            result = a / b
-            if b == 0:
-                print("Error: Division by zero not allowed!")
-                continue
-        else:
-            print("Invalid operation entered. Please try again.")
-            continue
-
-        print(f"\nResult: {a} {op} {b} = {result}")
-
-    except ValueError:
-        print("Error: Invalid input. Please enter numeric values.")
-    except ZeroDivisionError:
-        print("Error: Division by zero encountered.")
-
-    choice = input("\nDo you want to perform another calculation? (yes/no): ").lower()
-    if choice != 'yes':
-        print("\nGoodbye!")
+    num1 = input("Enter first number: ")
+    if num1 == 'quit':
         break
+    num2 = input("Enter second number: ")
+    if num2 == 'quit':
+        break
+    operator = input("Enter operator (+, -, *, /): ")
+    if operator == 'quit':
+        break
+
+    try:
+         result = float(num1) + float(num2) if operator == '+' else \
+              float(num1) - float(num2) if operator == '-' else \
+              float(num1) * float(num2) if operator == '*' else \
+              (float(num1) / float(num2)) if operator == '/' else None
+        if result is None or operator not in "+-*/":
+            print("Invalid operator or division by zero.\n")
+            continue
+        print(f"Result: {result}\n")
+    except ValueError:
+        print("Please enter valid numbers.\n")
+    except ZeroDivisionError:
+        print("Cannot divide by zero.\n")

@@ -32,11 +32,7 @@ completion = client.chat.completions.create(
     ],
 )
 
-original_stdout = sys.stdout
-
 with open("output.py", "w") as f:
     f.write(completion.choices[0].message.content)
-
-sys.stdout = original_stdout
 
 print("Successful")
